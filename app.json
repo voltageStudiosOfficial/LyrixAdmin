@@ -2,6 +2,14 @@
   "expo": {
     "name": "LyrixAdmin",
     "slug": "LyrixAdmin",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "1f003cb6-886c-4d13-86e0-33aafac25a9b"
+      }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
