@@ -21,7 +21,7 @@ jobs:
           expo-token: ${{ secrets.EXPO_TOKEN }}
       # Install eas
       - name: Install EAS
-        run: npm install eas-cli
+        run: npm install -g eas-cli
       # Trigger the preview build
       - name: Trigger Android Preview Build
         run: |
