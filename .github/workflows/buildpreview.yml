@@ -10,17 +10,19 @@ jobs:
     name: Build Android Preview
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Checkout your repo
+      # Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Login to Expo
+      # Login to Expo
       - name: Login to Expo
         uses: expo/expo-github-action@v5
         with:
           expo-token: ${{ secrets.EXPO_TOKEN }}
-
-      # 3️⃣ Trigger the preview build
+      # Install eas
+      - name: Install EAS
+        run: npm install eas-cli
+      # Trigger the preview build
       - name: Trigger Android Preview Build
         run: |
           eas build \
