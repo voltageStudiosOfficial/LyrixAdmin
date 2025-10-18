@@ -3,6 +3,9 @@
     "name": "LyrixAdmin",
     "slug": "LyrixAdmin",
     "version": "1.0.0",
+    "android": {
+      "package": "tech.voltagestudios.lyrix.adminpanel"
+    }
     "extra": {
       "eas": {
         "projectId": "1f003cb6-886c-4d13-86e0-33aafac25a9b"
