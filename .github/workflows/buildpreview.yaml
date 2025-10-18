@@ -1,0 +1,29 @@
+name: Preview Build
+
+on:
+  push:
+    branches:
+      - main  # triggers on pushes to main
+
+jobs:
+  build_android:
+    name: Build Android Preview
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout your repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Login to Expo
+      - name: Login to Expo
+        uses: expo/expo-github-action@v5
+        with:
+          expo-token: ${{ secrets.EXPO_TOKEN }}
+
+      # 3️⃣ Trigger the preview build
+      - name: Trigger Android Preview Build
+        run: |
+          eas build \
+            --platform android \
+            --profile preview \
+            --non-interactive
