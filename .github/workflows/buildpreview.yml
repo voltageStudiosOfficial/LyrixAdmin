@@ -25,7 +25,7 @@ jobs:
       # Trigger the preview build
       - name: Trigger Android Preview Build
         run: |
-          eas build \
+          npx eas build \
             --platform android \
             --profile preview \
             --non-interactive
