@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { Provider as PaperProvider, TextInput, Button, Title, Snackbar } from 'react-native-paper';
-
 export default function App() {
   const [artist, setArtist] = useState('');
   const [song, setSong] = useState('');
@@ -13,7 +12,14 @@ export default function App() {
   const [adminURL, setAdminURL] = useState('');
   const [adminToken, setAdminToken] = useState('');
   const [configured, setConfigured] = useState(false);
-
+  const resetConfig = async () => {
+  await SecureStore.deleteItemAsync('ADMIN_URL');
+  await SecureStore.deleteItemAsync('ADMIN_SECRET');
+  setAdminURL('');
+  setAdminToken('');
+  setConfigured(false);
+  showSnackbar('Configuration cleared. Enter new admin details.');
+};
   useEffect(() => {
     const loadConfig = async () => {
       const url = await SecureStore.getItemAsync('ADMIN_URL');
@@ -84,6 +90,7 @@ export default function App() {
           <TextInput label="Lyrics (one line per timestamp)" value={lyrics} onChangeText={setLyrics} mode="outlined" multiline numberOfLines={10} style={styles.input} />
           <Button mode="contained" onPress={() => sendRequest('add')} style={styles.button}>Add / Update</Button>
           <Button mode="outlined" onPress={() => sendRequest('delete')} style={styles.button}>Delete</Button>
+<Button mode="outlined" onPress={resetConfig} style={styles.button} color="#d32f2f">Logout</Button>
           <Snackbar visible={visible} onDismiss={() => setVisible(false)} duration={3000}>{message}</Snackbar>
         </ScrollView>
       </SafeAreaView>
