@@ -3,7 +3,7 @@ name: Preview Build
 on:
   push:
     branches:
-      - main  # triggers on pushes to main
+      - master  # triggers on pushes to main
 
 jobs:
   build_android:
